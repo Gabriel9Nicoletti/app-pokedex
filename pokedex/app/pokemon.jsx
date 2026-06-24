@@ -24,8 +24,8 @@ export default function PokemonDetail() {
             style={styles.image}
           />
         </View>
-      </View>
-      <ScrollView
+
+        <ScrollView
           horizontal
           contentContainerStyle={{
             flexGrow: 1,
@@ -41,6 +41,7 @@ export default function PokemonDetail() {
             />
           ))}
         </ScrollView>
+        
         <View style={styles.dataContainer}>
           <TextInfo label='Descrição' text={pokemon.Descricao} />
           <TextInfo label='Espécie' text={pokemon.Especie} />
@@ -49,9 +50,10 @@ export default function PokemonDetail() {
         </View>
 
       </View>
-    
+    </View>
   );
 }
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,

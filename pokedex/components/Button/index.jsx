@@ -1,26 +1,23 @@
-import { Image, View, Text, ScrollView, TouchableOpacity } from "react-native";
-import { POKEMON_TYPE_COLORS } from "../../utils/colors";
+import { Text, View } from "react-native";
+import { darken } from "polished";
 import { styles } from "./styles";
-import Button from "../Button";
 
-export default function Card({ pokemon }) {
+export default function Button({ tipo, large = false }) {
+  const buttonStyle = {
+    backgroundColor: darken(0.2, tipo.Cor),
+    minWidth: large ? 60 : 40,
+    height: large ? 45 : 30,
+    paddingHorizontal: large ? 20 : 10,
+    borderRadius: large ? 8 : 4,
+  };
+
+  const textStyle = {
+    fontSize: large ? 24 : 14,
+  };
+
   return (
-    <TouchableOpacity
-      style={[styles.container,
-        { backgroundColor: `${POKEMON_TYPE_COLORS[pokemon.Tipo[0].Nome]}` },
-      ]}>
-      <View style={styles.info}>
-        <Text style={styles.numero}>#{pokemon.Numero}</Text>
-        <Text style={styles.nome}>{pokemon.Nome}</Text>
-        <ScrollView horizontal>
-          {pokemon.Tipo.map((tipo) => (
-            <Button tipo={tipo} key={tipo.Nome}/>
-          ))}
-        </ScrollView>
-      </View>
-      <View style={styles.imageContainer}>
-        <Image source={{ uri: pokemon.Imagem }} style={styles.imagem}/>
-      </View>
-    </TouchableOpacity>
+    <View style={[styles.button, buttonStyle]}>
+      <Text style={[styles.buttonText, textStyle]}>{tipo.Nome}</Text>
+    </View>
   );
 }
